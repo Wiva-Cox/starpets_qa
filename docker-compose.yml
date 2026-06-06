@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  tests:
+    build: .
+    volumes:
+      - ./reports:/app/reports
+    environment:
+      - HEADLESS=true
+      - BASE_API_URL=https://jsonplaceholder.typicode.com
+      - BASE_UI_URL=https://starpets.gg
+    command: pytest -v --html=reports/report.html --self-contained-html
+
+  tests-api-only:
+    build: .
+    volumes:
+      - ./reports:/app/reports
+    environment:
+      - HEADLESS=true
+    command: pytest -v -m api --html=reports/report.html --self-contained-html
+
+  tests-ui-only:
+    build: .
+    volumes:
+      - ./reports:/app/reports
+    environment:
+      - HEADLESS=true
+    command: pytest -v -m ui --html=reports/report.html --self-contained-html

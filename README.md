@@ -43,7 +43,7 @@ starpets-qa/
 ```bash
 # Prerequisites: Python 3.11+
 
-git clone https://github.com/YOUR_USERNAME/starpets-qa
+git clone https://github.com/Wiva-Cox/starpets-qa
 cd starpets-qa
 
 python -m venv .venv
@@ -83,9 +83,26 @@ docker compose run --rm tests-api-only
 
 # UI tests only
 docker compose run --rm tests-ui-only
-
-# Report will be at ./reports/report.html
 ```
+
+---
+
+## Reports
+
+После каждого запуска pytest автоматически генерирует HTML-отчёт.
+
+| Артефакт | Путь | Содержимое |
+|---|---|---|
+| HTML-отчёт | `reports/report.html` | Все тесты, статусы, длительность, трейсбэки |
+| Скриншоты | `reports/screenshots/` | Снимок браузера при падении UI-теста |
+
+Открыть отчёт локально:
+
+```bash
+open reports/report.html        # macOS
+start reports/report.html       # Windows
+```
+
 ---
 
 ## Test Coverage
@@ -100,6 +117,7 @@ docker compose run --rm tests-ui-only
 | test_create_post_unauthorized | tests/api/test_create_posts.py | API | Некорректный токен → 401 |
 | test_idempotency_key | tests/api/test_create_posts.py | API | X-Idempotency-Key: защита от дублирования запросов |
 | test_buy_and_withdraw_item | tests/ui/test_catalog.py | UI E2E | Покупка товара → WS-подтверждение оплаты → кнопка «Вывести» |
+
 
 ---
 
